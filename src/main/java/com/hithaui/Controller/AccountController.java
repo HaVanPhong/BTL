@@ -44,6 +44,4 @@ public class AccountController {
 		return ResponseEntity.status(200).body(account2);		
 	}
 	
-
-
 }
