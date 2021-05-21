@@ -64,13 +64,6 @@ public class Notification {
 		super();
 	}
 
-	public Integer getIdNoti() {
-		return idNoti;
-	}
-
-	public void setIdNoti(Integer idNoti) {
-		this.idNoti = idNoti;
-	}
 
 	public String getTitle() {
 		return title;

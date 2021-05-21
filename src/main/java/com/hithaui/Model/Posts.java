@@ -43,14 +43,6 @@ public class Posts {
 		super();
 	}
 
-	public Integer getIdPosts() {
-		return idPosts;
-	}
-
-	public void setIdPosts(Integer idPosts) {
-		this.idPosts = idPosts;
-	}
-
 	public String getContent() {
 		return content;
 	}
