@@ -19,41 +19,47 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "accounts")
 public class Account {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String username;
-	
+
 	@JsonIgnore
 	private String password;
-	
+
 	private String role;
-	
+
 	private String fullname;
 
 	private String gender;
-	
+
 	private boolean status;
 	@CreationTimestamp
 	private Timestamp creaetAt;
 	@UpdateTimestamp
 	private Timestamp updateAt;
-	
+
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-	private List<Photo> photos ;
-	
-	private List<String> friends;
-	
-	public Account ( String username, String password, String role) {
-		this.username= username;
-		this.password= password;
-		this.role= role;
+	@JsonIgnore
+	private List<Photo> photos;
+
+//	@JsonIgnore
+//	private List<String> friends;
+
+	public Account() {
+
+	}
+
+	public Account(String username, String password, String role) {
+		this.username = username;
+		this.password = password;
+		this.role = role;
 	}
 
 	public Account(Integer id, String username, String password, String role, String fullname, String gender,
-			boolean status, Timestamp creaetAt, Timestamp updateAt, List<Photo> photos, List<String> friends) {
+			boolean status, Timestamp creaetAt, Timestamp updateAt, List<Photo> photos) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -65,7 +71,21 @@ public class Account {
 		this.creaetAt = creaetAt;
 		this.updateAt = updateAt;
 		this.photos = photos;
-		this.friends = friends;
+	}
+
+	public Account(String username, String password, String role, String fullname, String gender, boolean status,
+			Timestamp creaetAt, Timestamp updateAt, List<Photo> photos, List<String> friends) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.role = role;
+		this.fullname = fullname;
+		this.gender = gender;
+		this.status = status;
+		this.creaetAt = creaetAt;
+		this.updateAt = updateAt;
+		this.photos = photos;
+//		this.friends = friends;
 	}
 
 	public Account(String username, String password, String role, String fullname, String gender, boolean status) {
@@ -76,14 +96,6 @@ public class Account {
 		this.fullname = fullname;
 		this.gender = gender;
 		this.status = status;
-	}
-
-	public Account() {
-		super();
-	}
-
-	public Integer getId() {
-		return id;
 	}
 
 	public void setId(Integer id) {
@@ -162,13 +174,12 @@ public class Account {
 		this.photos = photos;
 	}
 
-	public List<String> getFriends() {
-		return friends;
-	}
+//	public List<String> getFriends() {
+//		return friends;
+//	}
+//
+//	public void setFriends(List<String> friends) {
+//		this.friends = friends;
+//	}
 
-	public void setFriends(List<String> friends) {
-		this.friends = friends;
-	}
-	
-	
 }

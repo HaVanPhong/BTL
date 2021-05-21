@@ -21,7 +21,7 @@ import com.hithaui.Service.MyUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private MyUserDetailsService myUserDetailsService;
@@ -47,11 +47,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors().configurationSource(request -> corsConfiguration()).and()
 				.csrf().disable().authorizeRequests()
 				.antMatchers("/auth/login").permitAll()
-				.antMatchers("/api/demo").permitAll()
 				.antMatchers("/api/accounts/create").permitAll()
 				.antMatchers("/api/accounts").authenticated()
 				.antMatchers("/api/admin/**").authenticated()
-				.antMatchers("api/member").authenticated()
+				.antMatchers("/api/member").authenticated()
 				.and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

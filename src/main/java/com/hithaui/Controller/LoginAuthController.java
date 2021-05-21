@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hithaui.DTO.AccountDTO;
+import com.hithaui.DTO.JwtResponse;
+import com.hithaui.Exception.DuplicateException;
 import com.hithaui.Service.MyUserDetailsService;
 import com.hithaui.utils.JwtUtil;
 
@@ -41,13 +43,13 @@ public class LoginAuthController {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(accountDTO.getUsername(), accountDTO.getPassword()));
 		} catch (BadCredentialsException e) {
-			throw new Exception("incorrect username or password");
+			throw new DuplicateException("incorrect username or password");
 		}
 		
 		UserDetails userDetails = myUserDetailsService.loadUserByUsername(accountDTO.getUsername());
 		String jwt = jwtUtil.generateToken(userDetails);
 		
-		return ResponseEntity.status(200).body(jwt);		
+		return ResponseEntity.status(200).body(new JwtResponse(jwt));		
 	}
 	
 	

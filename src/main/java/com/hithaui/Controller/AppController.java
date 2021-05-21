@@ -1,6 +1,6 @@
 package com.hithaui.Controller;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hithaui.Exception.NotFoundException;
+import com.hithaui.Model.Account;
 import com.hithaui.Repository.AccountRepositories;
 
 @RestController
 @RequestMapping("/api")
-@Transactional
 public class AppController {
 	@Autowired
 	private AccountRepositories AccountRepositories;
@@ -25,7 +26,7 @@ public class AppController {
 	public ResponseEntity<?> getAllAccount() throws Exception{
 //		List<Account> accounts=  AccountRepositories.findAll();
 //		if (accounts.size()==0) {
-//			throw new Exception("NOT FOUND ANY ACCOUNTS");
+//			throw new NotFoundException("NOT FOUND ANY ACCOUNTS");
 //		}
 //		return ResponseEntity.status(200).body(accounts);
 		return new AccountController().getAllAccountsEntity();

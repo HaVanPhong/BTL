@@ -57,10 +57,9 @@ public class Comment {
 		this.updateAt = updateAt;
 	}
 
-	public Comment(Integer idCmt, String content, String linkImgCmt, Timestamp timeCmt, Timestamp updateAt, Photo photo,
+	public Comment(String content, String linkImgCmt, Timestamp timeCmt, Timestamp updateAt, Photo photo,
 			Restaurant restaurant, Account account, Posts posts) {
 		super();
-		this.idCmt = idCmt;
 		this.content = content;
 		this.linkImgCmt = linkImgCmt;
 		this.timeCmt = timeCmt;
@@ -75,13 +74,6 @@ public class Comment {
 		super();
 	}
 
-	public Integer getIdCmt() {
-		return idCmt;
-	}
-
-	public void setIdCmt(Integer idCmt) {
-		this.idCmt = idCmt;
-	}
 
 	public String getContent() {
 		return content;
