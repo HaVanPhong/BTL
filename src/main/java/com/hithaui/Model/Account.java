@@ -1,12 +1,12 @@
 package com.hithaui.Model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,8 +21,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Account {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(unique = true)
+	private String id;
 
 	private String username;
 
@@ -36,6 +36,11 @@ public class Account {
 	private String gender;
 
 	private boolean status;
+	
+	private String linkAvt;
+	
+	private String email;
+	
 	@CreationTimestamp
 	private Timestamp creaetAt;
 	@UpdateTimestamp
@@ -43,62 +48,51 @@ public class Account {
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private List<Photo> photos;
+	private List<Posts> posts;
 
 //	@JsonIgnore
 //	private List<String> friends;
+	
+	
 
 	public Account() {
 
 	}
 
-	public Account(String username, String password, String role) {
-		this.username = username;
-		this.password = password;
-		this.role = role;
+	public List<Posts> getPosts() {
+		return posts;
 	}
 
-	public Account(Integer id, String username, String password, String role, String fullname, String gender,
-			boolean status, Timestamp creaetAt, Timestamp updateAt, List<Photo> photos) {
+	public void setPosts(List<Posts> posts) {
+		this.posts = posts;
+	}
+
+	public String getLinkAvt() {
+		return linkAvt;
+	}
+
+	public void setLinkAvt(String linkAvt) {
+		this.linkAvt = linkAvt;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public Account(String username, String password, String role, String fullname, String gender, String email) {
 		super();
-		this.id = id;
+		this.id= "ELEO" + new Date().getTime();
 		this.username = username;
 		this.password = password;
 		this.role = role;
 		this.fullname = fullname;
 		this.gender = gender;
-		this.status = status;
-		this.creaetAt = creaetAt;
-		this.updateAt = updateAt;
-		this.photos = photos;
+		this.email= email;
 	}
 
-	public Account(String username, String password, String role, String fullname, String gender, boolean status,
-			Timestamp creaetAt, Timestamp updateAt, List<Photo> photos, List<String> friends) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.role = role;
-		this.fullname = fullname;
-		this.gender = gender;
-		this.status = status;
-		this.creaetAt = creaetAt;
-		this.updateAt = updateAt;
-		this.photos = photos;
-//		this.friends = friends;
-	}
+	
 
-	public Account(String username, String password, String role, String fullname, String gender, boolean status) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.role = role;
-		this.fullname = fullname;
-		this.gender = gender;
-		this.status = status;
-	}
-
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -166,13 +160,15 @@ public class Account {
 		this.updateAt = updateAt;
 	}
 
-	public List<Photo> getPhotos() {
-		return photos;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setPhotos(List<Photo> photos) {
-		this.photos = photos;
+	public void setEmail(String email) {
+		this.email = email;
 	}
+
+	
 
 //	public List<String> getFriends() {
 //		return friends;
