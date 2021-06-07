@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "restaurants")
 public class Restaurant {
@@ -24,17 +26,38 @@ public class Restaurant {
 	
 	private String location;
 	
-	private int star;
+	private double star;
+	
+	private int soLuot;
 	
 	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Comment> listCmt;
-
-	public Restaurant(String name, String addresss, String location, int star) {
+	
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Food> listFood;
+	
+	public Restaurant(String name, String addresss, String location) {
 		super();
 		this.name = name;
 		this.addresss = addresss;
 		this.location = location;
-		this.star = star;
+		this.star = 0;
+		this.soLuot=0;
+	}
+	
+	
+
+	public Restaurant(Integer idRes, String name, String addresss, String location, List<Comment> listCmt) {
+		super();
+		this.idRes = idRes;
+		this.name = name;
+		this.addresss = addresss;
+		this.location = location;
+		this.star = 0;
+		this.soLuot=0;
+		this.listCmt = listCmt;
 	}
 
 	public Restaurant() {
@@ -65,11 +88,11 @@ public class Restaurant {
 		this.location = location;
 	}
 
-	public int getStar() {
+	public double getStar() {
 		return star;
 	}
 
-	public void setStar(int star) {
+	public void setStar(double star) {
 		this.star = star;
 	}
 
@@ -80,5 +103,60 @@ public class Restaurant {
 	public void setListCmt(List<Comment> listCmt) {
 		this.listCmt = listCmt;
 	}
+
+
+
+	public Integer getIdRes() {
+		return idRes;
+	}
+
+
+
+	public void setIdRes(Integer idRes) {
+		this.idRes = idRes;
+	}
+
+
+
+	public List<Food> getListFood() {
+		return listFood;
+	}
+
+
+
+	public void setListFood(List<Food> listFood) {
+		this.listFood = listFood;
+	}
+
+
+
+	public Restaurant(Integer idRes, String name, String addresss, String location, int star, List<Comment> listCmt,
+			List<Food> listFood) {
+		super();
+		this.idRes = idRes;
+		this.name = name;
+		this.addresss = addresss;
+		this.location = location;
+		this.star = 0;
+		this.soLuot=0;
+		this.listCmt = listCmt;
+		this.listFood = listFood;
+	}
+
+
+
+	public int getSoLuot() {
+		return soLuot;
+	}
+
+
+
+	public void setSoLuot(int soLuot) {
+		this.soLuot = soLuot;
+	}
+	
+	
+	
+	
 	
 }

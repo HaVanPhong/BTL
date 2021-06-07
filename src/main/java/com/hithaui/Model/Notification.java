@@ -43,27 +43,27 @@ public class Notification {
 	@JsonIgnore
 	private Account account;
 	
-	@OneToOne
-	@JsonIgnore
-	@JoinColumn(name = "idPhoto")
-	private Photo photo;
 
-	public Notification(String title, String content, String linkPhoto, Account account, Photo photo) {
+	public Notification(String title, String content, String linkPhoto) {
 		super();
 		this.title = title;
 		this.content = content;
-		if (linkPhoto==null)
-		this.linkPhoto = photo.getLinkImg();
-		else 
-			this.linkPhoto= linkPhoto;
-		this.account = account;
-		this.photo = photo;
+		this.linkPhoto = linkPhoto;
 	}
 
 	public Notification() {
 		super();
 	}
 
+
+	
+	public Integer getIdNoti() {
+		return idNoti;
+	}
+
+	public void setIdNoti(Integer idNoti) {
+		this.idNoti = idNoti;
+	}
 
 	public String getTitle() {
 		return title;
@@ -113,12 +113,5 @@ public class Notification {
 		this.account = account;
 	}
 
-	public Photo getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(Photo photo) {
-		this.photo = photo;
-	}
 	
 }

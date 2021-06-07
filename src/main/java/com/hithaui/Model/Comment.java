@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -33,10 +32,6 @@ public class Comment {
 	@UpdateTimestamp
 	private Timestamp updateAt;
 	
-	@OneToOne
-	@JoinColumn(name = "idPhoto")
-	private Photo photo;
-	
 	@ManyToOne
 	@JoinColumn(name = "idRes")
 	private Restaurant restaurant;
@@ -48,26 +43,41 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name = "idPosts")
 	private Posts posts;
+	
+	@ManyToOne
+	@JoinColumn(name = "idFood")
+	private Food food;
 
-	public Comment(String content, String linkImgCmt, Timestamp timeCmt, Timestamp updateAt) {
+	public Comment(String content) {
 		super();
 		this.content = content;
-		this.linkImgCmt = linkImgCmt;
-		this.timeCmt = timeCmt;
-		this.updateAt = updateAt;
 	}
-
-	public Comment(String content, String linkImgCmt, Timestamp timeCmt, Timestamp updateAt, Photo photo,
+	
+	public Comment(String content, String link) {
+		super();
+		this.content = content;
+		this.linkImgCmt= link;
+	}
+	
+	public Comment(String content, String linkImgCmt, Timestamp timeCmt, Timestamp updateAt,
 			Restaurant restaurant, Account account, Posts posts) {
 		super();
 		this.content = content;
 		this.linkImgCmt = linkImgCmt;
 		this.timeCmt = timeCmt;
 		this.updateAt = updateAt;
-		this.photo = photo;
-		this.restaurant = restaurant;
+ 		this.restaurant = restaurant;
 		this.account = account;
 		this.posts = posts;
+	}
+	
+
+	public Integer getIdCmt() {
+		return idCmt;
+	}
+
+	public void setIdCmt(Integer idCmt) {
+		this.idCmt = idCmt;
 	}
 
 	public Comment() {
@@ -107,14 +117,6 @@ public class Comment {
 		this.updateAt = updateAt;
 	}
 
-	public Photo getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(Photo photo) {
-		this.photo = photo;
-	}
-
 	public Restaurant getRestaurant() {
 		return restaurant;
 	}
@@ -138,6 +140,29 @@ public class Comment {
 	public void setPosts(Posts posts) {
 		this.posts = posts;
 	}
+
+	public Food getFood() {
+		return food;
+	}
+
+	public void setFood(Food food) {
+		this.food = food;
+	}
+
+	public Comment(Integer idCmt, String content, String linkImgCmt, Timestamp timeCmt, Timestamp updateAt,
+			Restaurant restaurant, Account account, Posts posts, Food food) {
+		super();
+		this.idCmt = idCmt;
+		this.content = content;
+		this.linkImgCmt = linkImgCmt;
+		this.timeCmt = timeCmt;
+		this.updateAt = updateAt;
+		this.restaurant = restaurant;
+		this.account = account;
+		this.posts = posts;
+		this.food = food;
+	}
+	
 	
 	
 

@@ -3,10 +3,9 @@ package com.hithaui.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.hithaui.Model.Photo;
+import com.hithaui.Model.Food;
 
 @Repository
-public interface PhotoRepositories extends JpaRepository<Photo, Integer> {
+public interface FoodRepositories extends JpaRepository<Food, Integer>{
 
-	Photo findByLinkImg(String linkImg);
 }
