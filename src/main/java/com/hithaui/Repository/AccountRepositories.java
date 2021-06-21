@@ -9,4 +9,5 @@ import com.hithaui.Model.Account;
 @Repository
 public interface AccountRepositories extends JpaRepository<Account, String> {
 	Account findByUsername(String username);
+	Account findByPostsIdPosts(Integer id);
 }

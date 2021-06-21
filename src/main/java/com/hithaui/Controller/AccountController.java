@@ -77,8 +77,8 @@ public class AccountController {
 			message.setText("Bạn vừa tạo thành công tài khoản trên hệ thống EATHIT"
 					+ "\nVui lòng ghi nhớ tài khoản cá nhân và không cung cấp nội dung email này cho bất cứ ai"
 					+ "\nID: "+ account.getId()
-					+ "\nTài khoản: " + account.getUsername() + "\nMật Khẩu: " + account.getPassword());
-			this.emailSender.send(message);
+					+ "\nTài khoản: " + account.getUsername() + "\nMật Khẩu: " + accountDTO.getPassword());
+			emailSender.send(message);
 		}
 		
 		return ResponseEntity.status(200).body(account2);		
